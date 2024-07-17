@@ -14,6 +14,10 @@ const authRouter = require("./auth/router");
 
 router.use("/auth", authRouter);
 
+const playlistsRouter = require("./playlists/router");
+
+router.use("/playlists", playlistsRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
