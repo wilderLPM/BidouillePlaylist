@@ -1,4 +1,7 @@
+// import { useState } from 'react';
+
 import "./HomePage.css";
+import HomeForms from "../components/Forms/HomeForms";
 
 export default function HomePage() {
   return (
@@ -10,13 +13,7 @@ export default function HomePage() {
           playlist. Or simply browse down below for existing playlists made by
           fellow music lovers
         </p>
-        <div id="forms">
-          <div id="chooseForm">
-            <button type="button">Log In</button>
-            <button type="button">Sign Up</button>
-          </div>
-          <button type="button">Submit</button>
-        </div>
+        <HomeForms />
       </div>
       <div id="allPlaylistsDiv">
         <p>SearchBar</p>

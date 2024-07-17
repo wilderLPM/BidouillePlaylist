@@ -12,6 +12,8 @@
   --alvvays-blue: #1d232c;
   --beach-house-grey: #b0bbbf;
   --mgmt: #00ab87;
+  height: 100%;
+  width: 100%;
 }
 
 body {
@@ -23,4 +25,10 @@ body {
 
 .bidouille {
   color: var(--primary-color);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
