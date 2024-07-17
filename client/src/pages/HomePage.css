@@ -12,3 +12,25 @@
   background-color: var(--background-color);
   color: white;
 }
+
+#playlistDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#playlistCard {
+  display: grid;
+  grid-template-columns: 140px 1fr 30px;
+  grid-template-rows: 140px;
+}
+
+#playlistCard > img {
+  grid-column: 1;
+}
+
+#playlistCard > h2 {
+  grid-column: 2;
+  align-self: center;
+  justify-self: center;
+}

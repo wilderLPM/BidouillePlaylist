@@ -2,6 +2,7 @@
 
 import "./HomePage.css";
 import HomeForms from "../components/Forms/HomeForms";
+import PlaylistComponent from "../components/PlaylistComponent";
 import { useUserContext } from "../contexts/UserContext";
 
 export default function HomePage() {
@@ -19,7 +20,9 @@ export default function HomePage() {
       </div>
       <div id="BrowsePlaylists">
         <p>SearchBar</p>
-        <p>PlaylistComponent</p>
+        <div id="playlistDiv">
+          <PlaylistComponent auth={auth} />
+        </div>
       </div>
     </div>
   );

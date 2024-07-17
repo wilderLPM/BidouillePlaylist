@@ -7,7 +7,12 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import user-related actions
-const { browse, read, add } = require("../../../controllers/PlaylistAction");
+const {
+  browse,
+  read,
+  add,
+  orderByUser,
+} = require("../../../controllers/PlaylistAction");
 
 // eslint-disable-next-line no-unused-vars
 const { hashPassword, verifyCookie } = require("../../../services/auth");
@@ -20,6 +25,8 @@ router.get("/:id", read);
 
 // Route to add a new user
 router.post("/", hashPassword, add);
+
+router.post("/order-by-user", orderByUser);
 
 /* ************************************************************************* */
 
