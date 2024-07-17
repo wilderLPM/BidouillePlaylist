@@ -12,8 +12,8 @@ class UserRepository extends AbstractRepository {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (username, password) values (?, ?)`,
-      [user.newUsername, user.newPassword]
+      `insert into ${this.table} (username, hashed_password) values (?, ?)`,
+      [user.newUsername, user.hashedPassword]
     );
 
     // Return the ID of the newly inserted user
@@ -39,6 +39,15 @@ class UserRepository extends AbstractRepository {
 
     // Return the array of users
     return rows;
+  }
+
+  async verifyUser(username) {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where username = ?`,
+      [username]
+    );
+
+    return rows[0];
   }
 
   // The U of CRUD - Update operation

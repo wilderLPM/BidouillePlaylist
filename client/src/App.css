@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Quicksand";
+  src: url("../src/assets/Quicksand-VariableFont_wght.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Metrophobic";
+  src: url("../src/assets/Metrophobic/Metrophobic-Regular.ttf");
+}
+
 :root {
   --background-color: #12131b;
   --primary-color: #e4c32f;
@@ -12,6 +23,8 @@
   --alvvays-blue: #1d232c;
   --beach-house-grey: #b0bbbf;
   --mgmt: #00ab87;
+  --primary-font: "Quicksand";
+  --text-font: "Metrophobic";
   height: 100%;
   width: 100%;
 }
@@ -31,4 +44,23 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100vh;
+  padding: 10px 20px;
+}
+
+h1 {
+  text-align: center;
+  font-family: var(--primary-font);
+}
+
+p {
+  font-family: var(--text-font);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }

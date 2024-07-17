@@ -2,8 +2,10 @@ import { useState } from "react";
 
 import LogInAction from "../../actions/LogInAction";
 import SignUpAction from "../../actions/SignUpAction";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function HomePage() {
+  const { login } = useUserContext();
   const [form, setForm] = useState("log-in");
 
   const [formData, setFormData] = useState({
@@ -65,11 +67,10 @@ export default function HomePage() {
     e.preventDefault();
     if (form === "log-in") {
       if (validateFormLogIn() === true) {
-        const success = await LogInAction(formData);
-        if (success === true) {
-          // fetch ?
-          // setAuth(true);
+        const user = await LogInAction(formData);
+        if (user !== false) {
           // toast.success
+          login(user);
         } else {
           // toast.error
         }
@@ -89,10 +90,20 @@ export default function HomePage() {
   return (
     <div id="forms">
       <div id="chooseForm">
-        <button type="button" name="log-in" onClick={handleChooseForm}>
+        <button
+          type="button"
+          name="log-in"
+          onClick={handleChooseForm}
+          className={form === "log-in" ? "chosenForm" : ""}
+        >
           Log In
         </button>
-        <button type="button" name="sign-up" onClick={handleChooseForm}>
+        <button
+          type="button"
+          name="sign-up"
+          onClick={handleChooseForm}
+          className={form === "sign-up" ? "chosenForm" : ""}
+        >
           Sign Up
         </button>
       </div>
