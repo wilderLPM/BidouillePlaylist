@@ -2,6 +2,26 @@
   color: red;
 }
 
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10vh;
+}
+
+.welcomeDiv {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.welcomeDiv.row {
+  height: 70vh;
+}
+
 .chosenForm {
   text-decoration: underline;
   text-underline-offset: 10px;
@@ -13,19 +33,30 @@
   color: white;
 }
 
-#playlistDiv {
+.playlistDiv {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-radius: 17px;
+  padding: 20px 30px;
+  gap: 20px;
 }
 
 #playlistCard {
   display: grid;
-  grid-template-columns: 140px 1fr 30px;
-  grid-template-rows: 140px;
+  grid-template-columns: clamp(80px, 20vw, 140px) minmax(230px, 50vw) minmax(
+      40px,
+      5vw
+    );
+  grid-template-rows: clamp(80px, 20vw, 140px);
+  background-color: var(--alvvays-blue);
+  border-radius: 17px;
 }
 
-#playlistCard > img {
+#playlistCard > cover {
   grid-column: 1;
 }
 
@@ -33,4 +64,44 @@
   grid-column: 2;
   align-self: center;
   justify-self: center;
+}
+
+#playlistCard > #pencil {
+  grid-column: 3;
+}
+
+#pencil {
+  justify-self: center;
+  padding-top: 10px;
+  width: 4vw;
+  max-width: 40px;
+  min-width: 20px;
+}
+
+#playlist > p {
+  text-align: center;
+  color: var(--primary-color);
+  padding-top: 5px;
+}
+
+@media (min-width: 768px) {
+  #playlistCard {
+    grid-template-columns: clamp(80px, 10vw, 140px) minmax(230px, 30vw) minmax(
+        40px,
+        5vw
+      );
+    grid-template-rows: clamp(80px, 10vw, 140px);
+  }
+  .playlistDiv {
+    flex-direction: row;
+  }
+  .playlistDiv.row {
+    max-width: 53vw;
+  }
+  .home.row {
+    flex-direction: row;
+  }
+  .welcomeDiv.row {
+    width: 40vw;
+  }
 }

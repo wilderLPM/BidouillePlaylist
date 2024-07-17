@@ -65,3 +65,7 @@ ul {
 a {
   text-decoration: none;
 }
+
+#hiddenDiv {
+  height: 50px;
+}

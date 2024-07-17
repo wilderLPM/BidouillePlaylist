@@ -9,7 +9,7 @@ function App() {
       <main>
         <NavBar />
         <Outlet />
-        <div> </div>
+        <div id="hiddenDiv"> </div>
       </main>
     </UserProvider>
   );

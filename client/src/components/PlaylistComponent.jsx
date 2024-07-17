@@ -44,7 +44,7 @@ export default function PlaylistComponent({ auth }) {
 
   if (playlists !== null) {
     return playlists.map((playlist) => (
-      <PlaylistCard playlist={playlist} key={playlist.id} />
+      <PlaylistCard playlist={playlist} key={playlist.id} auth={auth} />
     ));
   }
 }

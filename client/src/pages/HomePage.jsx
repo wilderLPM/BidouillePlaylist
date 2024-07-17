@@ -8,8 +8,8 @@ import { useUserContext } from "../contexts/UserContext";
 export default function HomePage() {
   const { auth } = useUserContext();
   return (
-    <div className="home">
-      <div id="welcomeDiv">
+    <div className={`home ${auth === null ? "row" : ""}`}>
+      <div className={`welcomeDiv ${auth === null ? "row" : ""}`}>
         <p>
           Welcome to BidouillePlaylist ! Search for your favorite songs and
           start to <span className="bidouille">“bidouille”</span> a new
@@ -20,7 +20,7 @@ export default function HomePage() {
       </div>
       <div id="BrowsePlaylists">
         <p>SearchBar</p>
-        <div id="playlistDiv">
+        <div className={`playlistDiv ${auth === null ? "row" : ""}`}>
           <PlaylistComponent auth={auth} />
         </div>
       </div>
