@@ -2,9 +2,24 @@ const AbstractSeeder = require("./AbstractSeeder");
 
 const musics = [
   {
-    title: "Woman",
-    year: 1998,
-    genre: "Electro",
+    title: "Yuve yuve yu",
+    year: 2019,
+    genre: "Rock, Metal",
+  },
+  {
+    title: "Silver Soul",
+    year: 2010,
+    genre: "Dream Pop, Shoegaze",
+  },
+  {
+    title: "Nothing to declare",
+    year: 2024,
+    genre: "Alternative",
+  },
+  {
+    title: "The Agency Group",
+    year: 2014,
+    genre: "Indie",
   },
 ];
 

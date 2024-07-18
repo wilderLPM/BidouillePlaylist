@@ -7,12 +7,12 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import music-related actions
-const { add } = require("../../../controllers/MusicAction");
-
-const { hashPassword } = require("../../../services/auth");
+const { add, join } = require("../../../controllers/MusicAction");
 
 // Route to add a new music
-router.post("/", hashPassword, add);
+router.post("/", add);
+
+router.post("/join", join);
 
 /* ************************************************************************* */
 

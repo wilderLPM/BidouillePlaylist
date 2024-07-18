@@ -4,8 +4,20 @@ const MusicSeeder = require("./MusicSeeder");
 
 const fks = [
   {
-    playlistId: 1,
+    playlistId: 4,
     musicId: 1,
+  },
+  {
+    playlistId: 1,
+    musicId: 2,
+  },
+  {
+    playlistId: 3,
+    musicId: 3,
+  },
+  {
+    playlistId: 2,
+    musicId: 4,
   },
 ];
 

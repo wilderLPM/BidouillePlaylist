@@ -13,7 +13,16 @@ class MusicRepository extends AbstractRepository {
     // Execute the SQL INSERT query to add a new music to the "music" table
     const [result] = await this.database.query(
       `insert into ${this.table} (title, year, genre) values (?, ?, ?)`,
-      [music.title, music.year, music.genre]
+      [music.song.title, music.song.year, music.song.genre]
+    );
+    return result.insertId;
+  }
+
+  async join(ids) {
+    // Execute the SQL INSERT query to add a new music to the "music" table
+    const [result] = await this.database.query(
+      `insert into playlist_music (playlist_id, music_id) values (?, ?)`,
+      [ids.playlistId, ids.musicId.insertId]
     );
     return result.insertId;
   }

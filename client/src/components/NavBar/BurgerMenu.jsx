@@ -50,7 +50,9 @@ export default function BurgerMenu() {
           {userPlaylists &&
             userPlaylists.map((playlist) => (
               <li key={playlist.id}>
-                <Link to={`/playlist/:${playlist.id}`}>{playlist.name}</Link>
+                <Link to={`/playlist-page/:${playlist.id}`}>
+                  {playlist.name}
+                </Link>
               </li>
             ))}
           <li>

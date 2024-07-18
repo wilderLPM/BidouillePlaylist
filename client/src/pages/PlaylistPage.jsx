@@ -31,7 +31,7 @@ export default function PlaylistPage() {
   }, [ApiUrl, cleanId, id]);
   return (
     <>
-      {musics !== null && <h3>{musics.name}</h3>}
+      {musics !== null && <h3>{musics[0].name}</h3>}
       {musics !== null &&
         musics.map((music) => <SongCard song={music} key={music.id} />)}
     </>

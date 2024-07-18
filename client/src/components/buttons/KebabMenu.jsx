@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -7,11 +8,12 @@ import Kebab from "../../assets/ellipsis-vertical.svg";
 import "./KebabMenu.css";
 import { useUserContext } from "../../contexts/UserContext";
 
-// eslint-disable-next-line no-unused-vars
 export default function KebabMenu({ song }) {
+  const ApiUrl = import.meta.env.VITE_API_URL;
   const { userPlaylists } = useUserContext();
   const [anchorEl, setAnchorEl] = useState(null);
   const [nestedAnchorEl, setNestedAnchorEl] = useState(null);
+  const navigate = useNavigate();
 
   const open = Boolean(anchorEl);
   const nestedOpen = Boolean(nestedAnchorEl);
@@ -32,8 +34,40 @@ export default function KebabMenu({ song }) {
   const handleNestedClick = (event) => {
     setNestedAnchorEl(event.currentTarget);
   };
-  const handleNestedClose = () => {
+  const handleNestedClose = async (e) => {
     setNestedAnchorEl(null);
+    const playlistId = e.target.id;
+
+    try {
+      const response = await fetch(`${ApiUrl}/api/musics/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ song }),
+        credentials: "include",
+      });
+      if (response.ok === true) {
+        const musicId = await response.json();
+        try {
+          const res = await fetch(`${ApiUrl}/api/musics/join`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ playlistId, musicId }),
+            credentials: "include",
+          });
+          if (res.ok === true) {
+            navigate(`/playlist-page/:${playlistId}`);
+          }
+        } catch (error) {
+          throw new Error(error);
+        }
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (
@@ -76,7 +110,11 @@ export default function KebabMenu({ song }) {
       >
         {userPlaylists &&
           userPlaylists.map((playlist) => (
-            <MenuItem key={playlist.id} onClick={handleNestedClose}>
+            <MenuItem
+              key={playlist.id}
+              id={playlist.id}
+              onClick={handleNestedClose}
+            >
               {playlist.name}
             </MenuItem>
           ))}
