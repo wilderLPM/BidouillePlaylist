@@ -32,7 +32,7 @@ export default function SearchBar() {
         id="searchInput"
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Search by title or artist"
+        placeholder="Search for a song"
       />
       <Link
         to={`/result-page/:${encodeURIComponent(query)}`}

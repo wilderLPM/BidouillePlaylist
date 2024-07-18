@@ -15,9 +15,8 @@ export default function ResultPage() {
     const fetchDiscogs = async () => {
       try {
         const response = await fetch(
-          `https://api.discogs.com/database/search?release_title=${query}&per_page=4&page=1&key=${ApiKey}&secret=${ApiSecret}`
+          `https://api.discogs.com/database/search?release_title=${query}&type=master&per_page=4&page=1&key=${ApiKey}&secret=${ApiSecret}`
         ).then((res) => res.json());
-
         setSearchResults(response.results);
       } catch (error) {
         throw new Error(error);
@@ -29,11 +28,16 @@ export default function ResultPage() {
   return (
     <>
       <SearchBar />
-      <h3>Results for {query}</h3>
+      <h3>
+        Results for <span className="bidouille">{query}</span>
+      </h3>
       <div id="resultsDiv">
         {searchResults !== null &&
           searchResults.map((song) => <SongCard song={song} key={song.id} />)}
       </div>
+      {searchResults !== null && searchResults.length === 0 && (
+        <p id="noResult">Nothing was found</p>
+      )}
     </>
   );
 }

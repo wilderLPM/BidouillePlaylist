@@ -2,12 +2,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+  justify-content: center;
 }
 
 .songCard {
-  display: flex;
+  display: grid;
   background-color: var(--secondary-color);
   width: 100%;
+  grid-template-columns: minmax(100px, 17vw) 1fr;
+  grid-template-rows: minmax(100px, 17vw);
 }
 
 #coverContainer {
@@ -43,4 +46,8 @@
   .songCard {
     width: 45%;
   }
+}
+
+#noResult {
+  text-align: center;
 }

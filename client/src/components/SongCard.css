@@ -1,0 +1,36 @@
+.songCard {
+  font-family: var(--text-font);
+}
+
+#songInfosGrid {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 35% 20% 23% 22%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding-left: 10px;
+  align-items: center;
+}
+
+#title {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#year {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#genre {
+  grid-column: 1;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+
+#kebabutton {
+  grid-column: 2;
+  grid-row: 1;
+  grid-row-end: 5;
+}
