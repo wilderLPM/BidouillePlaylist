@@ -15,16 +15,16 @@ export default function BurgerMenu() {
   useEffect(() => {
     const getUserPlaylists = async () => {
       try {
-        const response = await fetch(`${ApiUrl}/api/playlists/read`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            id: auth.id,
-          }),
-        });
+        const response = await fetch(
+          `${ApiUrl}/api/playlists/from-user/:${auth.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
         const data = await response.json();
         setUserPlaylists(data);
       } catch (error) {

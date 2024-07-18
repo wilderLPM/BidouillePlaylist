@@ -52,6 +52,23 @@ const orderByUser = async (req, res, next) => {
   }
 };
 
+const madeByUser = async (req, res, next) => {
+  try {
+    // Fetch a specific playlist from the database based on the provided ID
+    const playlists = await tables.playlist.madeByUser(req.params.user_id);
+    // If the playlist is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the playlist in JSON format
+    if (playlists == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(playlists);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
@@ -83,5 +100,6 @@ module.exports = {
   // edit,
   add,
   orderByUser,
+  madeByUser,
   // destroy,
 };

@@ -9,6 +9,7 @@
 #searchInput {
   height: 40px;
   width: 50vw;
+  padding-left: 10px;
 }
 
 #searchButton {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
+import SongCard from "../components/SongCard";
+import "./ResultPage.css";
 
 export default function ResultPage() {
   const ApiKey = import.meta.env.VITE_API_KEY;
@@ -28,13 +30,10 @@ export default function ResultPage() {
     <>
       <SearchBar />
       <h3>Results for {query}</h3>
-      {searchResults !== null &&
-        searchResults.map((song) => (
-          <>
-            <p>{song.title}</p>
-            <img src={song.cover_image} alt={song.title} />
-          </>
-        ))}
+      <div id="resultsDiv">
+        {searchResults !== null &&
+          searchResults.map((song) => <SongCard song={song} key={song.id} />)}
+      </div>
     </>
   );
 }

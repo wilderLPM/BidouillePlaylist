@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useMemo, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  /*   const ApiUrl = import.meta.env.VITE_API_URL;
-  const navigate = useNavigate(); */
+  const navigate = useNavigate();
+  //  const ApiUrl = import.meta.env.VITE_API_URL;
   // const notifyFail = (text) => toast.error(text);
 
   const [auth, setAuth] = useState(null);
@@ -18,6 +18,7 @@ export function UserProvider({ children }) {
 
   const logout = () => {
     setAuth(null);
+    navigate("/");
   };
 
   /*   const logout = async (sessionExpired) => {

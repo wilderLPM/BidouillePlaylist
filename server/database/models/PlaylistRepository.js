@@ -52,6 +52,18 @@ class PlaylistRepository extends AbstractRepository {
     return rows;
   }
 
+  async madeByUser(userId) {
+    const cleanId = userId.slice(1);
+    // Execute the SQL SELECT query to retrieve all playlists from the "playlist" table
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where user_id = ? order by created_at`,
+      [cleanId]
+    );
+
+    // Return the array of playlists
+    return rows;
+  }
+
   async verifyPlaylist(playlistname) {
     const [rows] = await this.database.query(
       `select * from ${this.table} where playlistname = ?`,

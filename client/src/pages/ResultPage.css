@@ -1,0 +1,46 @@
+#resultsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.songCard {
+  display: flex;
+  background-color: var(--secondary-color);
+  width: 100%;
+}
+
+#coverContainer {
+  height: 17vw;
+  min-height: 100px;
+  width: 17vw;
+  min-width: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+#coverContainer > img {
+  height: 17vw;
+  min-height: 100px;
+  width: auto;
+  top: 50%;
+  left: 50%;
+  transition: transform 0.5s ease;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+#coverContainer:hover > img {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+#coverContainer:hover {
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .songCard {
+    width: 45%;
+  }
+}
