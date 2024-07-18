@@ -54,6 +54,12 @@ h2 {
   font-family: var(--primary-font);
 }
 
+h1,
+button,
+a {
+  cursor: pointer;
+}
+
 p {
   font-family: var(--text-font);
 }

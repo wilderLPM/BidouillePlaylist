@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/result-page/:q",
+        path: "/result-page/:query",
         element: <ResultPage />,
       },
     ],
