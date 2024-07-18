@@ -73,6 +73,14 @@ class PlaylistRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async getPlaylistWithMusics(playlistId) {
+    const [rows] = await this.database.query(
+      `select p.name, m.id, m.title, m.year, m.genre from ${this.table} p join playlist_music pm on pm.playlist_id = p.id join music m on pm.music_id = m.id where p.id = ?`,
+      [playlistId]
+    );
+    return rows;
+  }
+
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing playlist
 

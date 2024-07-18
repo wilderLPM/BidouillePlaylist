@@ -13,6 +13,7 @@ const {
   add,
   orderByUser,
   madeByUser,
+  getPlaylistWithMusics,
 } = require("../../../controllers/PlaylistAction");
 
 // eslint-disable-next-line no-unused-vars
@@ -30,6 +31,8 @@ router.post("/", hashPassword, add);
 router.post("/order-by-user", orderByUser);
 
 router.get("/from-user/:user_id", madeByUser);
+
+router.get("/with-musics/:id", getPlaylistWithMusics);
 
 /* ************************************************************************* */
 

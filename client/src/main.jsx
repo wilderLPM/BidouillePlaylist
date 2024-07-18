@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
 import ResultPage from "./pages/ResultPage";
+import PlaylistPage from "./pages/PlaylistPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/result-page/:query",
         element: <ResultPage />,
+      },
+      {
+        path: "/playlist-page/:id",
+        element: <PlaylistPage />,
       },
     ],
   },

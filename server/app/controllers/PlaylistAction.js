@@ -90,6 +90,19 @@ const add = async (req, res, next) => {
   }
 };
 
+const getPlaylistWithMusics = async (req, res, next) => {
+  const playlistId = req.params.id;
+  const cleanId = playlistId.slice(1);
+
+  try {
+    const result = await tables.playlist.getPlaylistWithMusics(cleanId);
+    console.info("result", result);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
@@ -97,9 +110,8 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
   add,
   orderByUser,
   madeByUser,
-  // destroy,
+  getPlaylistWithMusics,
 };

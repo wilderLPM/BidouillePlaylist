@@ -10,4 +10,21 @@ create table playlist (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   user_id INT unsigned NOT NULL,
   CONSTRAINT fk_user_playlist FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
-); 
+);
+
+create table music (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL DEFAULT 'unknown',
+  year YEAR,
+  genre VARCHAR(80)
+/*   video VARCHAR(255),
+  length INT UNSIGNED,
+  cover VARCHAR(255) */
+);
+
+create table playlist_music (
+  playlist_id int unsigned not null,
+  music_id int unsigned not null,
+  CONSTRAINT fk_playlist FOREIGN KEY (playlist_id) REFERENCES playlist(id) ON DELETE CASCADE,
+  CONSTRAINT fk_music FOREIGN KEY (music_id) REFERENCES music(id) ON DELETE CASCADE
+);

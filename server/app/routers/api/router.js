@@ -18,6 +18,10 @@ const playlistsRouter = require("./playlists/router");
 
 router.use("/playlists", playlistsRouter);
 
+const musicRouter = require("./musics/router");
+
+router.use("/musics", musicRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;

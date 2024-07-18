@@ -59,6 +59,7 @@
   grid-template-rows: clamp(80px, 20vw, 140px);
   background-color: var(--alvvays-blue);
   border-radius: 17px;
+  cursor: pointer;
 }
 
 #playlistCard > cover {
