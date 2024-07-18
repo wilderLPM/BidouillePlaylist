@@ -1,46 +1,54 @@
 import PropTypes from "prop-types";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
+  const [auth, setAuth] = useState(null);
+  const [userPlaylists, setUserPlaylists] = useState();
   const navigate = useNavigate();
-  //  const ApiUrl = import.meta.env.VITE_API_URL;
+  const ApiUrl = import.meta.env.VITE_API_URL;
   // const notifyFail = (text) => toast.error(text);
 
-  const [auth, setAuth] = useState(null);
+  useEffect(() => {
+    const getUserPlaylists = async () => {
+      try {
+        const response = await fetch(
+          `${ApiUrl}/api/playlists/from-user/:${auth.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+        const data = await response.json();
+        setUserPlaylists(data);
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+    if (auth !== null) {
+      getUserPlaylists();
+    }
+  }, [ApiUrl, auth]);
 
   const login = (user) => {
     setAuth(user);
   };
 
   const logout = () => {
-    setAuth(null);
     navigate("/");
+    setAuth(null);
   };
 
-  /*   const logout = async (sessionExpired) => {
-    try {
-      const response = await fetch(`${ApiUrl}/api/auth/log-out`, {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status === 200) {
-        setAuth(null);
-        navigate(sessionExpired === true ? "/sign-up-page" : "/");
-      }
-    } catch (err) {
-      console.error(err);
-      // notifyFail("Une erreur est survenu !");
-    }
-  }; */
-
-  const memo = useMemo(() => ({ auth, setAuth, login, logout }), [auth]);
+  const memo = useMemo(
+    () => ({ auth, setAuth, login, logout, userPlaylists }),
+    [auth, logout, userPlaylists]
+  );
 
   return <UserContext.Provider value={memo}>{children}</UserContext.Provider>;
 }

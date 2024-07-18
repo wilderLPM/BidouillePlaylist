@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./BurgerMenu.css";
 import Burger from "../../assets/menu.svg";
@@ -6,33 +6,9 @@ import Cross from "../../assets/x.svg";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function BurgerMenu() {
-  const ApiUrl = import.meta.env.VITE_API_URL;
-  const { logout, auth } = useUserContext();
+  const { logout, userPlaylists } = useUserContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [userPlaylists, setUserPlaylists] = useState();
-
-  useEffect(() => {
-    const getUserPlaylists = async () => {
-      try {
-        const response = await fetch(
-          `${ApiUrl}/api/playlists/from-user/:${auth.id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        );
-        const data = await response.json();
-        setUserPlaylists(data);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-    getUserPlaylists();
-  }, [ApiUrl, auth]);
 
   const handleClick = () => {
     setIsOpen(!isOpen);

@@ -125,7 +125,7 @@ export default function HomePage() {
             <div className="input">
               <label htmlFor="password">Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 aria-required="true"
                 onChange={handleChange}
@@ -151,6 +151,7 @@ export default function HomePage() {
             <div className="input">
               <label htmlFor="newPassword">Password</label>
               <input
+                type="password"
                 name="newPassword"
                 aria-required="true"
                 onChange={handleChange}
@@ -163,6 +164,7 @@ export default function HomePage() {
             <div className="input">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
+                type="password"
                 name="confirmPassword"
                 aria-required="true"
                 onChange={handleChange}
