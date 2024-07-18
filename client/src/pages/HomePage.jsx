@@ -2,6 +2,7 @@
 
 import "./HomePage.css";
 import HomeForms from "../components/Forms/HomeForms";
+import SearchBar from "../components/SearchBar";
 import PlaylistComponent from "../components/PlaylistComponent";
 import { useUserContext } from "../contexts/UserContext";
 
@@ -19,7 +20,7 @@ export default function HomePage() {
         {auth === null && <HomeForms />}
       </div>
       <div id="BrowsePlaylists">
-        <p>SearchBar</p>
+        <SearchBar />
         <div className={`playlistDiv ${auth === null ? "row" : ""}`}>
           <PlaylistComponent auth={auth} />
         </div>

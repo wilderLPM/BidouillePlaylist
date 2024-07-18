@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  const ApiUrl = import.meta.env.VITE_API_URL;
-  const navigate = useNavigate();
+  /*   const ApiUrl = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate(); */
   // const notifyFail = (text) => toast.error(text);
 
   const [auth, setAuth] = useState(null);
@@ -16,7 +16,11 @@ export function UserProvider({ children }) {
     setAuth(user);
   };
 
-  const logout = async (sessionExpired) => {
+  const logout = () => {
+    setAuth(null);
+  };
+
+  /*   const logout = async (sessionExpired) => {
     try {
       const response = await fetch(`${ApiUrl}/api/auth/log-out`, {
         credentials: "include",
@@ -33,13 +37,9 @@ export function UserProvider({ children }) {
       console.error(err);
       // notifyFail("Une erreur est survenu !");
     }
-  };
+  }; */
 
-  const memo = useMemo(
-    () => ({ auth, setAuth, login, logout }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [auth]
-  );
+  const memo = useMemo(() => ({ auth, setAuth, login, logout }), [auth]);
 
   return <UserContext.Provider value={memo}>{children}</UserContext.Provider>;
 }

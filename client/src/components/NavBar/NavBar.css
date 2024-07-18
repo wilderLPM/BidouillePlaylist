@@ -1,6 +1,10 @@
 .navBar {
   display: flex;
   justify-content: space-between;
+}
+
+.navBar,
+.title {
   margin-bottom: 20px;
 }
 

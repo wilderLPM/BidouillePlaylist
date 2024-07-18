@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./HomeForms.css";
 import LogInAction from "../../actions/LogInAction";
 import SignUpAction from "../../actions/SignUpAction";
 import { useUserContext } from "../../contexts/UserContext";
@@ -107,67 +107,78 @@ export default function HomePage() {
           Sign Up
         </button>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form id="homeForm" onSubmit={handleSubmit}>
         {form === "log-in" ? (
           <div id="log-in">
-            <label htmlFor="username">username</label>
-            <input
-              type="text"
-              name="username"
-              aria-required="true"
-              onChange={handleChange}
-            />
-            {errors.username !== undefined && (
-              <p className="error">{errors.username}</p>
-            )}
-
-            <label htmlFor="password">Password</label>
-            <input
-              type="text"
-              name="password"
-              aria-required="true"
-              onChange={handleChange}
-            />
-            {errors.password !== undefined && (
-              <p className="error">{errors.password}</p>
-            )}
+            <div className="input">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                name="username"
+                aria-required="true"
+                onChange={handleChange}
+              />
+              {errors.username !== undefined && (
+                <p className="error">{errors.username}</p>
+              )}
+            </div>
+            <div className="input">
+              <label htmlFor="password">Password</label>
+              <input
+                type="text"
+                name="password"
+                aria-required="true"
+                onChange={handleChange}
+              />
+              {errors.password !== undefined && (
+                <p className="error">{errors.password}</p>
+              )}
+            </div>
           </div>
         ) : (
           <div id="sign-up">
-            <label htmlFor="newUsername">Username</label>
-            <input
-              name="newUsername"
-              placeholder="toto"
-              aria-required="true"
-              onChange={handleChange}
-            />
-            {errors.newUsername !== undefined && (
-              <p className="error">{errors.newUsername}</p>
-            )}
+            <div className="input">
+              <label htmlFor="newUsername">Username</label>
+              <input
+                name="newUsername"
+                aria-required="true"
+                onChange={handleChange}
+              />
+              {errors.newUsername !== undefined && (
+                <p className="error">{errors.newUsername}</p>
+              )}
+            </div>
+            <div className="input">
+              <label htmlFor="newPassword">Password</label>
+              <input
+                name="newPassword"
+                aria-required="true"
+                onChange={handleChange}
+              />
+              {errors.newPassword !== undefined && (
+                <p className="error">{errors.newPassword}</p>
+              )}
+            </div>
 
-            <label htmlFor="newPassword">Password</label>
-            <input
-              name="newPassword"
-              aria-required="true"
-              onChange={handleChange}
-            />
-            {errors.newPassword !== undefined && (
-              <p className="error">{errors.newPassword}</p>
-            )}
-
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              name="confirmPassword"
-              aria-required="true"
-              onChange={handleChange}
-            />
-            {errors.confirmPassword !== undefined && (
-              <p className="error">{errors.confirmPassword}</p>
-            )}
+            <div className="input">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                name="confirmPassword"
+                aria-required="true"
+                onChange={handleChange}
+              />
+              {errors.confirmPassword !== undefined && (
+                <p className="error">{errors.confirmPassword}</p>
+              )}
+            </div>
           </div>
         )}
-        <button type="submit">Submit</button>
       </form>
+      <div id="submitButton">
+        <button type="submit" form="homeForm">
+          Submit
+        </button>
+      </div>
     </div>
   );
 }

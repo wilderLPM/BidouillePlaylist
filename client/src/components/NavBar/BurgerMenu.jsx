@@ -1,12 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./BurgerMenu.css";
 import Burger from "../../assets/menu.svg";
 import Cross from "../../assets/x.svg";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function BurgerMenu() {
+  const ApiUrl = import.meta.env.VITE_API_URL;
+  const { logout, auth } = useUserContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [userPlaylists, setUserPlaylists] = useState();
+
+  useEffect(() => {
+    const getUserPlaylists = async () => {
+      try {
+        const response = await fetch(`${ApiUrl}/api/playlists/read`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            id: auth.id,
+          }),
+        });
+        const data = await response.json();
+        setUserPlaylists(data);
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+    getUserPlaylists();
+  }, [ApiUrl, auth]);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -15,6 +41,9 @@ export default function BurgerMenu() {
         setIsVisible(false);
       }, 300);
     else setIsVisible(true);
+  };
+  const handleLogOut = () => {
+    logout();
   };
   return (
     <>
@@ -38,9 +67,20 @@ export default function BurgerMenu() {
         <button type="button" onClick={handleClick} className="cross">
           <img src={Cross} alt="close burger menu" />
         </button>
-        <ul>
+        <ul id="burgerUl">
           <li>
             <Link to="/">HomePage</Link>
+          </li>
+          {userPlaylists &&
+            userPlaylists.map((playlist) => (
+              <li key={playlist.id}>
+                <Link to={`/playlist/:${playlist.id}`}>{playlist.name}</Link>
+              </li>
+            ))}
+          <li>
+            <button id="burgerLogout" type="button" onClick={handleLogOut}>
+              Log Out
+            </button>
           </li>
         </ul>
       </nav>

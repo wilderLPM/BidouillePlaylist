@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 10vh;
+  gap: 4vh;
 }
 
 .welcomeDiv {
@@ -17,9 +17,13 @@
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  font-family: var(--text-font);
 }
 .welcomeDiv.row {
   height: 70vh;
+}
+.welcomeDiv > p {
+  line-height: 1.4rem;
 }
 
 .chosenForm {
@@ -31,6 +35,7 @@
   border-style: none;
   background-color: var(--background-color);
   color: white;
+  font-family: var(--text-font);
 }
 
 .playlistDiv {
@@ -103,5 +108,11 @@
   }
   .welcomeDiv.row {
     width: 40vw;
+  }
+  .home {
+    gap: 2vw;
+  }
+  .welcomeDiv > p {
+    width: 70%;
   }
 }

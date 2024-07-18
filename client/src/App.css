@@ -68,4 +68,9 @@ a {
 
 #hiddenDiv {
   height: 50px;
+  width: 50%;
+}
+
+button {
+  font-size: 20px;
 }
