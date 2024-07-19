@@ -1,0 +1,19 @@
+#long-button {
+  background-color: var(--secondary-color);
+  border: none;
+}
+
+#kebabMenu > form {
+  z-index: 1;
+  position: absolute;
+  left: 218px;
+  display: flex;
+  flex-direction: column;
+}
+
+#kebabMenu > form > button {
+  border: none;
+  padding: 3px 5px;
+  background-color: var(--primary-color);
+  font-family: var(--text-font);
+}

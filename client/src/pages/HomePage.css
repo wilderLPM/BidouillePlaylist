@@ -1,0 +1,119 @@
+.error {
+  color: red;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 4vh;
+}
+
+.welcomeDiv {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: var(--text-font);
+}
+.welcomeDiv.row {
+  height: 70vh;
+}
+.welcomeDiv > p {
+  line-height: 1.4rem;
+}
+
+.chosenForm {
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+#chooseForm > button {
+  border-style: none;
+  background-color: var(--background-color);
+  color: white;
+  font-family: var(--text-font);
+}
+
+.playlistDiv {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-radius: 17px;
+  padding: 20px 30px;
+  gap: 20px;
+}
+
+#playlistCard {
+  display: grid;
+  grid-template-columns: clamp(80px, 20vw, 140px) minmax(230px, 50vw) minmax(
+      40px,
+      5vw
+    );
+  grid-template-rows: clamp(80px, 20vw, 140px);
+  background-color: var(--alvvays-blue);
+  border-radius: 17px;
+  cursor: pointer;
+}
+
+#playlistCard > cover {
+  grid-column: 1;
+}
+
+#playlistCard > h2 {
+  grid-column: 2;
+  align-self: center;
+  justify-self: center;
+}
+
+#playlistCard > #pencil {
+  grid-column: 3;
+}
+
+#pencil {
+  justify-self: center;
+  padding-top: 10px;
+  width: 4vw;
+  max-width: 40px;
+  min-width: 20px;
+}
+
+#playlist > p {
+  text-align: center;
+  color: var(--primary-color);
+  padding-top: 5px;
+}
+
+@media (min-width: 768px) {
+  #playlistCard {
+    grid-template-columns: clamp(80px, 10vw, 140px) minmax(230px, 30vw) minmax(
+        40px,
+        5vw
+      );
+    grid-template-rows: clamp(80px, 10vw, 140px);
+  }
+  .playlistDiv {
+    flex-direction: row;
+  }
+  .playlistDiv.row {
+    max-width: 53vw;
+  }
+  .home.row {
+    flex-direction: row;
+  }
+  .welcomeDiv.row {
+    width: 40vw;
+  }
+  .home {
+    gap: 2vw;
+  }
+  .welcomeDiv > p {
+    width: 70%;
+  }
+}

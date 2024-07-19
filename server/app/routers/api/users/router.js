@@ -6,17 +6,20 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Import item-related actions
-const { browse, read, add } = require("../../../controllers/itemActions");
+// Import user-related actions
+const { browse, read, add } = require("../../../controllers/UserAction");
 
-// Route to get a list of items
+// eslint-disable-next-line no-unused-vars
+const { hashPassword, verifyCookie } = require("../../../services/auth");
+
+// Route to get a list of users
 router.get("/", browse);
 
-// Route to get a specific item by ID
+// Route to get a specific user by ID
 router.get("/:id", read);
 
-// Route to add a new item
-router.post("/", add);
+// Route to add a new user
+router.post("/", hashPassword, add);
 
 /* ************************************************************************* */
 

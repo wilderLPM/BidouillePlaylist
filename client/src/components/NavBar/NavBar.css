@@ -1,0 +1,25 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navBar,
+.title {
+  margin-bottom: 20px;
+}
+
+#logoutButton {
+  color: var(--primary-color);
+  border: solid var(--primary-color);
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  height: 44px;
+  padding: 0 10px;
+  transition: ease-in-out 0.5s;
+}
+
+#logoutButton:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
