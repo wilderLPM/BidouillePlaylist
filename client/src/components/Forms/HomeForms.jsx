@@ -79,6 +79,10 @@ export default function HomePage() {
     if (validateFormSignUp() === true) {
       const success = await SignUpAction(formData);
       if (success === true) {
+        setFormData({
+          username: "",
+          password: "",
+        });
         setForm("log-in");
         // toast.success
       } else {
@@ -117,6 +121,7 @@ export default function HomePage() {
                 name="username"
                 aria-required="true"
                 onChange={handleChange}
+                value={formData.username}
               />
               {errors.username !== undefined && (
                 <p className="error">{errors.username}</p>
@@ -129,6 +134,7 @@ export default function HomePage() {
                 name="password"
                 aria-required="true"
                 onChange={handleChange}
+                value={formData.password}
               />
               {errors.password !== undefined && (
                 <p className="error">{errors.password}</p>
@@ -143,6 +149,7 @@ export default function HomePage() {
                 name="newUsername"
                 aria-required="true"
                 onChange={handleChange}
+                value={formData.newUsername}
               />
               {errors.newUsername !== undefined && (
                 <p className="error">{errors.newUsername}</p>
@@ -155,6 +162,7 @@ export default function HomePage() {
                 name="newPassword"
                 aria-required="true"
                 onChange={handleChange}
+                value={formData.newPassword}
               />
               {errors.newPassword !== undefined && (
                 <p className="error">{errors.newPassword}</p>
@@ -168,6 +176,7 @@ export default function HomePage() {
                 name="confirmPassword"
                 aria-required="true"
                 onChange={handleChange}
+                value={formData.confirmPassword}
               />
               {errors.confirmPassword !== undefined && (
                 <p className="error">{errors.confirmPassword}</p>
