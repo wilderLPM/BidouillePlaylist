@@ -10,9 +10,11 @@ import { useUserContext } from "../../contexts/UserContext";
 
 export default function KebabMenu({ song }) {
   const ApiUrl = import.meta.env.VITE_API_URL;
-  const { userPlaylists } = useUserContext();
+  const { auth, userPlaylists } = useUserContext();
   const [anchorEl, setAnchorEl] = useState(null);
   const [nestedAnchorEl, setNestedAnchorEl] = useState(null);
+  const [showInput, setShowInput] = useState(false);
+  const [playlistName, setPlaylistName] = useState("");
   const navigate = useNavigate();
 
   const open = Boolean(anchorEl);
@@ -21,23 +23,11 @@ export default function KebabMenu({ song }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (e) => {
+  const handleClose = () => {
     setAnchorEl(null);
-    if (e.target.name === "create") {
-      // fetch post
-    }
   };
-  /*   const handleAdd = () => {
-    setAnchorEl(null);
 
-  }; */
-  const handleNestedClick = (event) => {
-    setNestedAnchorEl(event.currentTarget);
-  };
-  const handleNestedClose = async (e) => {
-    setNestedAnchorEl(null);
-    const playlistId = e.target.id;
-
+  const putMusic = async (playlistId) => {
     try {
       const response = await fetch(`${ApiUrl}/api/musics/`, {
         method: "POST",
@@ -70,6 +60,49 @@ export default function KebabMenu({ song }) {
     }
   };
 
+  const handleNestedClick = (event) => {
+    setNestedAnchorEl(event.currentTarget);
+  };
+
+  const handleNestedClose = async (e) => {
+    setNestedAnchorEl(null);
+    const playlistId = e.target.id;
+
+    putMusic(playlistId);
+  };
+
+  const handleNewPlaylist = () => {
+    setShowInput(true);
+    handleClose();
+  };
+
+  const handleInputChange = (event) => {
+    setPlaylistName(event.target.value);
+  };
+
+  const handleInputSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.info("New playlist name:", playlistName);
+      const response = await fetch(`${ApiUrl}/api/playlists`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ playlistName, userId: auth.id }),
+        credentials: "include",
+      });
+      const { insertId } = await response.json();
+
+      putMusic(insertId);
+    } catch (error) {
+      throw new Error(error);
+    }
+
+    setShowInput(false);
+    setPlaylistName("");
+  };
+
   return (
     <div id="kebabMenu">
       <IconButton
@@ -91,7 +124,7 @@ export default function KebabMenu({ song }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} name="create">
+        <MenuItem onClick={handleNewPlaylist} name="create">
           New playlist
         </MenuItem>
         <MenuItem
@@ -119,6 +152,17 @@ export default function KebabMenu({ song }) {
             </MenuItem>
           ))}
       </Menu>
+      {showInput && (
+        <form onSubmit={handleInputSubmit}>
+          <input
+            type="text"
+            value={playlistName}
+            onChange={handleInputChange}
+            placeholder="Enter playlist name"
+          />
+          <button type="submit">Create</button>
+        </form>
+      )}
     </div>
   );
 }
