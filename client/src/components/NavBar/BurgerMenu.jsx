@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./BurgerMenu.css";
 import Burger from "../../assets/menu.svg";
 import Cross from "../../assets/x.svg";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function BurgerMenu() {
+  const location = useLocation().pathname;
   const { logout, userPlaylists } = useUserContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +22,9 @@ export default function BurgerMenu() {
   const handleLogOut = () => {
     logout();
   };
+
+  const verifyLocation = (path) => (path === location ? "actualPage" : "");
+
   return (
     <>
       {isOpen === false && (
@@ -44,17 +48,23 @@ export default function BurgerMenu() {
           <img src={Cross} alt="close burger menu" />
         </button>
         <ul id="burgerUl">
-          <li>
+          <li id={verifyLocation("/")}>
             <Link to="/">HomePage</Link>
           </li>
-          {userPlaylists &&
-            userPlaylists.map((playlist) => (
-              <li key={playlist.id}>
-                <Link to={`/playlist-page/:${playlist.id}`}>
-                  {playlist.name}
-                </Link>
-              </li>
-            ))}
+          <div id="myPlaylists">
+            <li>My Playlists</li>
+            {userPlaylists &&
+              userPlaylists.map((playlist) => (
+                <li
+                  key={playlist.id}
+                  id={verifyLocation(`/playlist-page/:${playlist.id}`)}
+                >
+                  <Link to={`/playlist-page/:${playlist.id}`}>
+                    &gt; {playlist.name}
+                  </Link>
+                </li>
+              ))}
+          </div>
           <li>
             <button id="burgerLogout" type="button" onClick={handleLogOut}>
               Log Out
