@@ -59,24 +59,31 @@
   grid-template-rows: clamp(80px, 20vw, 140px);
   background-color: var(--alvvays-blue);
   border-radius: 17px;
-  cursor: pointer;
 }
 
 #playlistCard > cover {
   grid-column: 1;
 }
 
-#playlistCard > h2 {
+#playlistCard > h2,
+#playlistCard > input {
   grid-column: 2;
   align-self: center;
   justify-self: center;
 }
 
-#playlistCard > #pencil {
-  grid-column: 3;
+#playlistCard > h2 {
+  cursor: pointer;
 }
 
-#pencil {
+#playlistCard > #pencil,
+#save {
+  grid-column: 3;
+  cursor: pointer;
+}
+
+#pencil,
+#save {
   justify-self: center;
   padding-top: 10px;
   width: 4vw;

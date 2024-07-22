@@ -11,6 +11,7 @@ const {
   browse,
   read,
   add,
+  edit,
   orderByUser,
   madeByUser,
   getPlaylistWithMusics,
@@ -24,6 +25,8 @@ router.get("/:id", read);
 
 // Route to add a new user
 router.post("/", add);
+
+router.put("/:id", edit);
 
 router.post("/order-by-user", orderByUser);
 

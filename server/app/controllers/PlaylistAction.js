@@ -70,7 +70,21 @@ const madeByUser = async (req, res, next) => {
 };
 
 // The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
+const edit = async (req, res, next) => {
+  // Extract the playlist data from the request body and params
+  const playlist = { ...req.body, id: req.params.id.slice(1) };
+  console.info(playlist);
+  try {
+    // Update the playlist in the database
+    await tables.playlist.update(playlist);
+
+    // Respond with HTTP 204 (No Content)
+    res.sendStatus(204);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
@@ -110,6 +124,7 @@ const getPlaylistWithMusics = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  edit,
   add,
   orderByUser,
   madeByUser,

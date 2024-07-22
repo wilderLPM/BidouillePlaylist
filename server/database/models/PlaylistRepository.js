@@ -82,11 +82,14 @@ class PlaylistRepository extends AbstractRepository {
   }
 
   // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing playlist
+  async update(playlist) {
+    const [result] = await this.database.query(
+      `update ${this.table} set name = ? where id = ?`,
+      [playlist.playlistName, playlist.id]
+    );
 
-  // async update(playlist) {
-  //   ...
-  // }
+    return result.affectedRows;
+  }
 
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an playlist by its ID

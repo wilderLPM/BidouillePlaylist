@@ -34,21 +34,6 @@
   border: 0;
 }
 
-#burgerLogout {
-  border: solid black;
-  border-width: 1px;
-  border-radius: 10px;
-  height: 44px;
-  padding: 0 10px;
-  transition: ease-in-out 0.5s;
-  width: 200px;
-}
-
-#burgerLogout:hover {
-  background-color: black;
-  color: var(--primary-color);
-}
-
 #burgerUl {
   display: flex;
   flex-direction: column;
@@ -66,6 +51,24 @@ li {
 #burgerUl button {
   background-color: var(--primary-color);
   border: none;
+}
+
+#burgerLogout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid black !important;
+  border-width: 1px;
+  border-radius: 10px;
+  height: 44px;
+  padding: 0 10px;
+  transition: ease-in-out 0.5s;
+  width: 200px;
+}
+
+#burgerLogout:hover {
+  background-color: black;
+  color: var(--primary-color);
 }
 
 #myPlaylists {
