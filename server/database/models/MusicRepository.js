@@ -10,10 +10,11 @@ class MusicRepository extends AbstractRepository {
   // The C of CRUD - Create operation
 
   async create(music) {
+    const genreJson = JSON.stringify(music.song.genre);
     // Execute the SQL INSERT query to add a new music to the "music" table
     const [result] = await this.database.query(
       `insert into ${this.table} (title, year, genre) values (?, ?, ?)`,
-      [music.song.title, music.song.year, music.song.genre]
+      [music.song.title, music.song.year, genreJson]
     );
     return result.insertId;
   }

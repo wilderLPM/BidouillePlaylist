@@ -13,7 +13,7 @@ class PlaylistRepository extends AbstractRepository {
     // Execute the SQL INSERT query to add a new playlist to the "playlist" table
     const [result] = await this.database.query(
       `insert into ${this.table} (name, user_id) values (?, ?)`,
-      [playlist.name, playlist.userId]
+      [playlist.playlistName, playlist.userId]
     );
 
     // Return the ID of the newly inserted playlist

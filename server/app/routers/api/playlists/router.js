@@ -16,9 +16,6 @@ const {
   getPlaylistWithMusics,
 } = require("../../../controllers/PlaylistAction");
 
-// eslint-disable-next-line no-unused-vars
-const { hashPassword, verifyCookie } = require("../../../services/auth");
-
 // Route to get a list of users
 router.get("/", browse);
 
@@ -26,7 +23,7 @@ router.get("/", browse);
 router.get("/:id", read);
 
 // Route to add a new user
-router.post("/", hashPassword, add);
+router.post("/", add);
 
 router.post("/order-by-user", orderByUser);
 

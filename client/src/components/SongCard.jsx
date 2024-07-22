@@ -5,6 +5,15 @@ import { useUserContext } from "../contexts/UserContext";
 
 export default function SongCard({ song }) {
   const { auth } = useUserContext();
+  const { genre } = song;
+
+  const getGenres = () => {
+    if (Array.isArray(genre)) {
+      if (genre.length > 0) return "array";
+    }
+    return false;
+  };
+
   return (
     <div className="songCard">
       <div id="coverContainer">
@@ -14,7 +23,14 @@ export default function SongCard({ song }) {
         <div id="songInfosGrid">
           <h4>{song.title}</h4>
           <p id="year">{song.year ? song.year : "unknow year"}</p>
-          <p id="genre">{song.genre ? song.genre : "unknow genre"}</p>
+          <p id="genre">
+            {getGenres() === "array"
+              ? genre
+                  .map((name) => `${name}, `)
+                  .join("")
+                  .slice(0, -2)
+              : "unknow genre"}
+          </p>
           {auth !== null && <KebabMenu song={song} />}
         </div>
       </div>

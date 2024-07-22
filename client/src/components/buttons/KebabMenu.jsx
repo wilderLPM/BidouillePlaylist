@@ -10,7 +10,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 export default function KebabMenu({ song }) {
   const ApiUrl = import.meta.env.VITE_API_URL;
-  const { auth, userPlaylists } = useUserContext();
+  const { auth, userPlaylists, setUpdateP } = useUserContext();
   const [anchorEl, setAnchorEl] = useState(null);
   const [nestedAnchorEl, setNestedAnchorEl] = useState(null);
   const [showInput, setShowInput] = useState(false);
@@ -48,7 +48,9 @@ export default function KebabMenu({ song }) {
             body: JSON.stringify({ playlistId, musicId }),
             credentials: "include",
           });
+          console.info("res:", res);
           if (res.ok === true) {
+            setUpdateP(true);
             navigate(`/playlist-page/:${playlistId}`);
           }
         } catch (error) {

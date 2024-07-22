@@ -16,7 +16,7 @@ create table music (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   title VARCHAR(255) NOT NULL DEFAULT 'unknown',
   year YEAR,
-  genre VARCHAR(80)
+  genre JSON
 /*   video VARCHAR(255),
   length INT UNSIGNED,
   cover VARCHAR(255) */

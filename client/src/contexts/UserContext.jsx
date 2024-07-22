@@ -10,6 +10,7 @@ export function UserProvider({ children }) {
   const [userPlaylists, setUserPlaylists] = useState();
   const navigate = useNavigate();
   const ApiUrl = import.meta.env.VITE_API_URL;
+  const [updateP, setUpdateP] = useState(false);
   // const notifyFail = (text) => toast.error(text);
 
   useEffect(() => {
@@ -30,11 +31,12 @@ export function UserProvider({ children }) {
       } catch (error) {
         throw new Error(error);
       }
+      setUpdateP(false);
     };
     if (auth !== null) {
       getUserPlaylists();
     }
-  }, [ApiUrl, auth]);
+  }, [ApiUrl, auth, updateP]);
 
   const login = (user) => {
     setAuth(user);
@@ -46,7 +48,7 @@ export function UserProvider({ children }) {
   };
 
   const memo = useMemo(
-    () => ({ auth, setAuth, login, logout, userPlaylists }),
+    () => ({ auth, setAuth, login, logout, userPlaylists, setUpdateP }),
     [auth, logout, userPlaylists]
   );
 
