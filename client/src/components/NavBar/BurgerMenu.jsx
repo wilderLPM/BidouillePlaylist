@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./BurgerMenu.css";
 import Burger from "../../assets/menu.svg";
 import Cross from "../../assets/x.svg";
@@ -7,6 +7,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 export default function BurgerMenu() {
   const location = useLocation().pathname;
+  const navigate = useNavigate();
   const { logout, userPlaylists } = useUserContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -19,8 +20,17 @@ export default function BurgerMenu() {
       }, 300);
     else setIsVisible(true);
   };
+
   const handleLogOut = () => {
     logout();
+  };
+
+  const handleNavigate = (e) => {
+    handleClick();
+    if (e.target.name === "home") {
+      return navigate("/");
+    }
+    return navigate(`/playlist-page/:${e.target.name}`);
   };
 
   const verifyLocation = (path) => (path === location ? "actualPage" : "");
@@ -48,20 +58,29 @@ export default function BurgerMenu() {
           <img src={Cross} alt="close burger menu" />
         </button>
         <ul id="burgerUl">
-          <li id={verifyLocation("/")}>
-            <Link to="/">HomePage</Link>
+          <li>
+            <button
+              type="button"
+              name="home"
+              onClick={handleNavigate}
+              id={verifyLocation("/")}
+            >
+              HomePage
+            </button>
           </li>
           <div id="myPlaylists">
             <li>My Playlists</li>
             {userPlaylists &&
               userPlaylists.map((playlist) => (
-                <li
-                  key={playlist.id}
-                  id={verifyLocation(`/playlist-page/:${playlist.id}`)}
-                >
-                  <Link to={`/playlist-page/:${playlist.id}`}>
+                <li key={playlist.id}>
+                  <button
+                    type="button"
+                    onClick={handleNavigate}
+                    name={playlist.id}
+                    id={verifyLocation(`/playlist-page/:${playlist.id}`)}
+                  >
                     &gt; {playlist.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
           </div>

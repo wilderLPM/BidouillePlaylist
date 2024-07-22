@@ -35,12 +35,9 @@
 }
 
 #burgerLogout {
-  font-family: var(--text-font);
-  color: black;
   border: solid black;
   border-width: 1px;
   border-radius: 10px;
-  background-color: var(--primary-color);
   height: 44px;
   padding: 0 10px;
   transition: ease-in-out 0.5s;
@@ -59,11 +56,16 @@
   gap: 57px;
 }
 
-#burgerUl a,
+#burgerUl button,
 li {
   color: black;
   font-size: 24px;
   font-family: var(--text-font);
+}
+
+#burgerUl button {
+  background-color: var(--primary-color);
+  border: none;
 }
 
 #myPlaylists {
