@@ -74,18 +74,24 @@ class PlaylistRepository extends AbstractRepository {
   }
 
   async getPlaylistWithMusics(playlistId) {
-    const [rows] = await this.database.query(
-      `select p.name, m.id, m.title, m.year, m.genre from ${this.table} p join playlist_music pm on pm.playlist_id = p.id join music m on pm.music_id = m.id where p.id = ?`,
+    const [playlist] = await this.database.query(
+      `select name, user_id from ${this.table} where id = ?`,
       [playlistId]
     );
-    return rows;
+    const name = playlist[0];
+    const [rows] = await this.database.query(
+      `select m.id, m.title, m.year, m.genre from ${this.table} p join playlist_music pm on pm.playlist_id = p.id join music m on pm.music_id = m.id where p.id = ?`,
+      [playlistId]
+    );
+    return [name, rows];
   }
 
   // The U of CRUD - Update operation
   async update(playlist) {
+    const cleanId = playlist.id.slice(1);
     const [result] = await this.database.query(
       `update ${this.table} set name = ? where id = ?`,
-      [playlist.playlistName, playlist.id]
+      [playlist.playlistName, cleanId]
     );
 
     return result.affectedRows;
