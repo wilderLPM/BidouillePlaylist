@@ -1,3 +1,14 @@
+#playlistHeader {
+  display: flex;
+  justify-content: center;
+}
+
 #playlistName {
   display: flex;
+  gap: 10px;
+}
+
+#playlistName > #pencil,
+#playlistHeader > #save {
+  width: 20px;
 }

@@ -84,34 +84,40 @@ export default function PlaylistPage() {
   };
   return (
     <>
-      {name !== null && isEditing === false && (
-        <div id="playlistName">
-          <h3 onDoubleClick={isAuthor ? handleDoubleClick : null}>{name}</h3>
-          <img
-            id="pencil"
-            src={Pencil}
-            onClick={handlePencil}
-            alt={`Edit the name of you playlist ${name}`}
-          />
-        </div>
-      )}
-      {isEditing === true && (
-        <div>
-          <input
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            value={playlistName}
-          />
-          <img
-            id="save"
-            src={Save}
-            onClick={handleSave}
-            alt="Save your changes"
-          />
-        </div>
-      )}
-      {musics !== null &&
-        musics.map((music) => <SongCard song={music} key={music.id} />)}
+      <div id="playlistHeader">
+        {name !== null && isEditing === false && (
+          <div id="playlistName">
+            <h3 onDoubleClick={isAuthor ? handleDoubleClick : null}>{name}</h3>
+            {isAuthor && (
+              <img
+                id="pencil"
+                src={Pencil}
+                onClick={handlePencil}
+                alt={`Edit the name of you playlist ${name}`}
+              />
+            )}
+          </div>
+        )}
+        {isEditing === true && (
+          <>
+            <input
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              value={playlistName}
+            />
+            <img
+              id="save"
+              src={Save}
+              onClick={handleSave}
+              alt="Save your changes"
+            />
+          </>
+        )}
+      </div>
+      <div id="songsDiv">
+        {musics !== null &&
+          musics.map((music) => <SongCard song={music} key={music.id} />)}
+      </div>
     </>
   );
 }

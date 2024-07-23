@@ -1,11 +1,17 @@
-.navBar {
-  display: flex;
-  justify-content: space-between;
-}
-
 .navBar,
 .title {
-  margin-bottom: 20px;
+  height: 15vw;
+  max-height: 15vh;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  justify-content: center;
+}
+
+.navBar {
+  justify-content: space-between;
 }
 
 #logoutButton {
@@ -22,4 +28,16 @@
 #logoutButton:hover {
   background-color: var(--primary-color);
   color: var(--background-color);
+}
+
+@media (max-width: 500px) {
+  #logoutButton {
+    visibility: hidden;
+  }
+  .burger {
+    margin-right: 50px;
+  }
+  .navBar {
+    overflow: hidden;
+  }
 }

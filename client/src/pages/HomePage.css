@@ -52,7 +52,7 @@
 
 #playlistCard {
   display: grid;
-  grid-template-columns: clamp(80px, 20vw, 140px) minmax(230px, 50vw) minmax(
+  grid-template-columns: clamp(60px, 20vw, 140px) minmax(150px, 50vw) minmax(
       40px,
       5vw
     );
@@ -72,18 +72,19 @@
   justify-self: center;
 }
 
+#playlistCard > input {
+  font-size: 24px;
+  width: 24vw;
+  min-width: 200px;
+}
+
 #playlistCard > h2 {
   cursor: pointer;
 }
 
 #playlistCard > #pencil,
-#save {
+#playlistCard > #save {
   grid-column: 3;
-  cursor: pointer;
-}
-
-#pencil,
-#save {
   justify-self: center;
   padding-top: 10px;
   width: 4vw;
@@ -99,7 +100,7 @@
 
 @media (min-width: 768px) {
   #playlistCard {
-    grid-template-columns: clamp(80px, 10vw, 140px) minmax(230px, 30vw) minmax(
+    grid-template-columns: clamp(60px, 10vw, 140px) minmax(150px, 26vw) minmax(
         40px,
         5vw
       );
@@ -113,6 +114,7 @@
   }
   .home.row {
     flex-direction: row;
+    align-items: baseline;
   }
   .welcomeDiv.row {
     width: 40vw;
